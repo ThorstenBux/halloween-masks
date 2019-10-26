@@ -1,2 +1,5 @@
 declare module '*.jpg'
 declare module '*.json'
+declare module 'facefilter/helpers/JeelizResizer'
+declare module 'facefilter/dist/jeelizFaceFilterES6'
+declare module 'facefilter/helpers/JeelizThreejsHelper'

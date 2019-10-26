@@ -130,3 +130,7 @@
 .footer-div .thumbnails-div .scroll-div .selected {
   border: 2px #0078ff solid;
 }
+
+.MuiCircularProgress-colorPrimary {
+  color: #ff9100 !important;
+}

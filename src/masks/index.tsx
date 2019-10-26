@@ -2,7 +2,7 @@ const names = [
   'bear'
 ]
 
-interface Mask {
+export interface Mask {
   gltf: string
   jpg: Promise<string>
   info: Promise<{title: string, scale: number, position: Array<number>}>
