@@ -8,7 +8,6 @@ interface ThumbnailProps {
   selected: number;
   onSelected: Function;
   masks: Array<Mask>;
-  downloadObjects: Function;
 }
 
 interface ThumbnailState {
@@ -28,9 +27,9 @@ export class ThumbnailList extends React.Component<ThumbnailProps, ThumbnailStat
       <div className="thumbnails-div">
         <div className="scroll-div">
           { this.props.masks.map((mask, index: number) => {
-            const {info, jpg, gltf} = mask
+            const {info, jpg} = mask
             return (
-              <Thumbnail key={index} selected={this.selected === index} index={index} info={info} jpg={jpg} downloadObjects={this.props.downloadObjects}></Thumbnail>
+              <Thumbnail key={index} selected={this.selected === index} index={index} info={info} jpg={jpg} onSelected={this.props.onSelected}></Thumbnail>
             )
           })
         }
@@ -44,7 +43,7 @@ interface ThumbProps {
   index: number
   selected: boolean
   jpg: Promise<string>
-  downloadObjects: Function
+  onSelected: Function
   info:  Promise<{
     title: string;
     scale: number;
@@ -71,7 +70,7 @@ class Thumbnail extends React.Component<ThumbProps, ThumbState> {
       // onClick={() => this.props.onSelected(index)}
       onClick={() => { 
         this.setState({loading: true})
-        this.props.downloadObjects(this.props.index).then(() => this.setState({loading: false}))
+        this.props.onSelected(this.props.index).then(() => this.setState({loading: false}))
       } }
     >
       <div className={this.state.loading ? '': 'hide'}> 

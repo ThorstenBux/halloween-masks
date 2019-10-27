@@ -1,5 +1,6 @@
 const names = [
-  'bear'
+  'bear',
+  'iron_man'
 ]
 
 export interface Mask {
@@ -9,7 +10,7 @@ export interface Mask {
 }
 
 export default names.map(name => ({
-  // gltf : `/masks/${name}/${name}.gltf`,
-  // jpg  : import(`./${name}/object.jpg`),
+  gltf : `/masks/${name}/${name}.gltf`,
+  jpg  : import(`./${name}/object.png`),
   info : import(`./${name}/object.json`),
 } as Mask))

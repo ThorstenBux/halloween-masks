@@ -2,14 +2,13 @@ import React from 'react';
 import { ThumbnailList } from './ThumbnailList';
 import backImg from './imgs/back.png'
 import masks, { Mask }from './masks';
-import * as JeelizThreejsHelper from 'facefilter/helpers/JeelizThreejsHelper'
-import facefilter from 'facefilter/dist/jeelizFaceFilterES6'
 import * as three from 'three'
 import { RGBELoader } from 'three/examples/jsm/loaders/RGBELoader'
 import { GLTFLoader, GLTF } from 'three/examples/jsm/loaders/GLTFLoader'
 import { EquirectangularToCubeGenerator } from 'three/examples/jsm/loaders/EquirectangularToCubeGenerator'
 import { PMREMGenerator } from 'three/examples/jsm/pmrem/PMREMGenerator'
 import { PMREMCubeUVPacker } from 'three/examples/jsm/pmrem/PMREMCubeUVPacker'
+import { Object3D } from 'three';
 
 interface MaskExperienceProps {
   onBack: Function
@@ -25,11 +24,13 @@ export class MaskExperience extends React.Component<MaskExperienceProps, MaskExp
   canvasId: string = 'faceCanvas'
   CANVAS: any
   threeCamera: three.PerspectiveCamera = new three.PerspectiveCamera()
-  maxFaces = 3
+  maxFaces = 1
   cachedTexture!: three.Texture;
   cachedModels: Array<GLTF>;
   envMap: any;
   cameraFOV = 74;
+  threeStuffs: any;
+  ready: boolean | undefined;
 
   constructor(props: MaskExperienceProps) {
     super(props);
@@ -53,7 +54,7 @@ export class MaskExperience extends React.Component<MaskExperienceProps, MaskExp
     child.receiveShadow = false
   }
 
-  prepareModel(index: number) {
+  async prepareModel(index: number) {
     const gltfObject = this.cachedModels[this.state.selectedIndex]
       gltfObject.scene.traverse((child) => {
         if (child instanceof three.Mesh) {
@@ -77,10 +78,9 @@ export class MaskExperience extends React.Component<MaskExperienceProps, MaskExp
         }
       })
       gltfObject.scene.frustumCulled = false
-      masks[index].info.then((info) => {
-        gltfObject.scene.scale.multiplyScalar(info.scale)
-        gltfObject.scene.position.set(info.position[0], info.position[1], info.position[2])
-      })
+      const info = await masks[index].info
+      gltfObject.scene.scale.multiplyScalar(info.scale)
+      gltfObject.scene.position.set(info.position[0], info.position[1], info.position[2])
       if (this.maxFaces > 1) {
         gltfObject.scenes = []
         for (let i = 0; i < this.maxFaces; i++) {
@@ -145,12 +145,15 @@ export class MaskExperience extends React.Component<MaskExperienceProps, MaskExp
     pmremCubeUVPacker.dispose()
   }
 
-  initThreeScene(spec: any) {
-    const threeStuffs = JeelizThreejsHelper.init(spec)
-    // this.threeStuffs = threeStuffs
-    // Generate envMap
+  async initThreeScene(spec: any) {
+    const threeStuffs = (window as any).THREE.JeelizHelper.init(spec)
+    this.threeStuffs = threeStuffs
+
+    // load HDR texture
+    const texture = await this.loadHDRTexture()
+    this.cachedTexture = texture
     this.generateEnvMap(threeStuffs.renderer)
-    this.onSelectObject()
+    await this.onSelectObject()
 
     this.setupRenderer(threeStuffs)
     this.setupLight(threeStuffs)
@@ -159,13 +162,13 @@ export class MaskExperience extends React.Component<MaskExperienceProps, MaskExp
     const aspecRatio  = spec.canvasElement.width / spec.canvasElement.height
     console.log('Resolutions (w/h): aspect', spec.canvasElement.width, spec.canvasElement.height, aspecRatio)
     const threeCamera = new three.PerspectiveCamera(this.cameraFOV, aspecRatio, 0.1, 100)
-    return threeCamera
+    this.threeCamera = threeCamera
   }
 
   initFaceFilter(videoSettings: any) {
     console.log('VideoSettings', videoSettings)
-    videoSettings.flipX = true
-    facefilter.init({
+    videoSettings.flipX = true;
+    (window as any).JEEFACEFILTERAPI.init({
       canvasId: this.canvasId,
       videoSettings,
       followZRot       : true,
@@ -181,19 +184,21 @@ export class MaskExperience extends React.Component<MaskExperienceProps, MaskExp
           console.error(errCode)
           return
         }
-        this.setState({ loadingProgress: 100 })
-        facefilter.set_stabilizationSettings({
+        this.setState({ loadingProgress: 100 });
+        (window as any).JEEFACEFILTERAPI.set_stabilizationSettings({
           translationFactorRange : [0.001, 0.003], // default [0.0015, 0.005]
           rotationFactorRange    : [0.002, 0.01], // default: [0.003, 0.02]
           qualityFactorRange     : [0.92, 0.98], // default: [0.9, 0.98]
           alphaRange             : [0.1, 1], // default: [0.05, 1]
         })
-        console.log('INFO : JEEFACEFILTERAPI IS READY', facefilter)
+        console.log('INFO : JEEFACEFILTERAPI IS READY', (window as any).JEEFACEFILTERAPI)
         this.CANVAS = spec.canvasElement
-        this.threeCamera = this.initThreeScene(spec)
+        this.initThreeScene(spec).then(() => this.ready = true)
       },
       callbackTrack: (detectState: any) => {
-        JeelizThreejsHelper.render(detectState, this.threeCamera)
+        if (this.ready) {
+          (window as any).THREE.JeelizHelper.render(detectState, this.threeCamera)
+        }
       }
     })
   }
@@ -223,35 +228,34 @@ export class MaskExperience extends React.Component<MaskExperienceProps, MaskExp
     this.startJeeliz()
   }
 
-  onSelectObject(newIndex = 0) {
+  async onSelectObject(newIndex = 0) {
     console.log('object selected', newIndex)
     console.log('mask', masks[newIndex])
     this.setState({selectedIndex: newIndex})
-    this.prepareModel(newIndex)
-
-    // const gltfObject = window.cachedModels[newIndex]
+    await this.downloadObjects(newIndex)
+    await this.prepareModel(newIndex)
+    const gltfObject = this.cachedModels[newIndex]
     // if (this.state.selectedIndex >= 0) {
-    //   window.addDragEventListener(undefined, canvasId, true)
+    //   (window as any).addDragEventListener(undefined, this.canvasId, true)
     //   if (this.threeStuffs.faceObject) {
-    //     this.threeStuffs.faceObject.remove(window.cachedModels[this.state.selectedIndex].scene)
+    //     this.threeStuffs.faceObject.remove(this.cachedModels[this.state.selectedIndex].scene)
     //   } else {
-    //     this.threeStuffs.faceObjects.forEach((faceObject, index) => {
-    //       faceObject.remove(window.cachedModels[this.state.selectedIndex].scenes[index])
+    //     this.threeStuffs.faceObjects.forEach((faceObject: Object3D, index: number) => {
+    //       faceObject.remove(this.cachedModels[this.state.selectedIndex].scenes[index])
     //     })
     //   }
     // }
-    // this.setState({ selectedIndex: newIndex })
 
-    // // Dispatch the model
-    // if (this.threeStuffs.faceObject) {
-    //   this.threeStuffs.faceObject.add(gltfObject.scene)
-    //   window.addDragEventListener(gltfObject.scene, canvasId)
-    // } else {
-    //   window.addDragEventListener(gltfObject.scenes, canvasId)
-    //   this.threeStuffs.faceObjects.forEach((faceObject, index) => {
-    //     faceObject.add(gltfObject.scenes[index])
-    //   })
-    // }
+    // Dispatch the model
+    if (this.threeStuffs.faceObject) {
+      this.threeStuffs.faceObject.add(gltfObject.scene);
+      // (window as any).addDragEventListener(gltfObject.scene, this.canvasId)
+    } else {
+      // (window as any).addDragEventListener(gltfObject.scenes, this.canvasId)
+      this.threeStuffs.faceObjects.forEach((faceObject: Object3D, index: number) => {
+        faceObject.add(gltfObject.scenes[index])
+      })
+    }
   }
 
   loadHDRTexture() {
@@ -292,12 +296,6 @@ export class MaskExperience extends React.Component<MaskExperienceProps, MaskExp
   }
 
   async downloadObjects(index: number) {
-    // load HDR texture
-    this.cachedTexture = await this.loadHDRTexture()
-    // if (!this.isActive) {
-    //   return
-    // }
-
     // load 3D objects
     if (!this.cachedModels[index]) {
       this.cachedModels[index] = await this.downloadObject(masks[index])
@@ -332,7 +330,7 @@ export class MaskExperience extends React.Component<MaskExperienceProps, MaskExp
         </div>
         {/* Render carusell */}
         <div className="footer-div">
-          <ThumbnailList selected={selectedIndex} onSelected={this.onSelectObject} downloadObjects={this.downloadObjects} masks={masks}/>
+          <ThumbnailList selected={selectedIndex} onSelected={this.onSelectObject.bind(this)} masks={masks}/>
         </div>
       </div>
     )
