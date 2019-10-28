@@ -1,0 +1,214 @@
+{
+    "asset" : {
+        "generator" : "Khronos glTF Blender I/O v0.9.36",
+        "version" : "2.0"
+    },
+    "scene" : 0,
+    "scenes" : [
+        {
+            "name" : "Scene",
+            "nodes" : [
+                5
+            ]
+        }
+    ],
+    "nodes" : [
+        {
+            "mesh" : 0,
+            "name" : "geo1_MAT_Mask_BloodyEyes_0"
+        },
+        {
+            "children" : [
+                0
+            ],
+            "name" : "geo1"
+        },
+        {
+            "children" : [
+                1
+            ],
+            "name" : "RootNode.008"
+        },
+        {
+            "children" : [
+                2
+            ],
+            "name" : "mesh.fbx",
+            "rotation" : [
+                0.7071068286895752,
+                0,
+                0,
+                0.7071068286895752
+            ]
+        },
+        {
+            "children" : [
+                3
+            ],
+            "name" : "RootNode (model correction matrix).011"
+        },
+        {
+            "children" : [
+                4
+            ],
+            "name" : "RootNode (gltf orientation matrix).008",
+            "scale" : [
+                1000,
+                1000,
+                1000
+            ],
+            "translation" : [
+                0,
+                -79.10187530517578,
+                -10.688375473022461
+            ]
+        }
+    ],
+    "materials" : [
+        {
+            "doubleSided" : true,
+            "emissiveFactor" : [
+                0,
+                0,
+                0
+            ],
+            "name" : "MAT_Mask_BloodyEyes_COLOR_0",
+            "normalTexture" : {
+                "index" : 0,
+                "texCoord" : 0
+            },
+            "pbrMetallicRoughness" : {
+                "baseColorTexture" : {
+                    "index" : 1,
+                    "texCoord" : 0
+                },
+                "metallicFactor" : 0,
+                "roughnessFactor" : 0.9577051401138306
+            }
+        }
+    ],
+    "meshes" : [
+        {
+            "name" : "geo1_MAT_Mask_BloodyEyes_0",
+            "primitives" : [
+                {
+                    "attributes" : {
+                        "POSITION" : 0,
+                        "NORMAL" : 1,
+                        "TEXCOORD_0" : 2,
+                        "TEXCOORD_1" : 3,
+                        "COLOR_0" : 4
+                    },
+                    "indices" : 5,
+                    "material" : 0
+                }
+            ]
+        }
+    ],
+    "textures" : [
+        {
+            "source" : 0
+        },
+        {
+            "source" : 1
+        }
+    ],
+    "images" : [
+        {
+            "mimeType" : "image/png",
+            "name" : "MAT_Mask_BloodyEyes_normal",
+            "uri" : "MAT_Mask_BloodyEyes_normal.png"
+        },
+        {
+            "mimeType" : "image/png",
+            "name" : "MAT_Mask_BloodyEyes_baseColor",
+            "uri" : "MAT_Mask_BloodyEyes_baseColor.png"
+        }
+    ],
+    "accessors" : [
+        {
+            "bufferView" : 0,
+            "componentType" : 5126,
+            "count" : 1992,
+            "max" : [
+                0.09016798436641693,
+                0.04573085159063339,
+                0.00012883417366538197
+            ],
+            "min" : [
+                -0.09033143520355225,
+                -0.045791640877723694,
+                -0.19393974542617798
+            ],
+            "type" : "VEC3"
+        },
+        {
+            "bufferView" : 1,
+            "componentType" : 5126,
+            "count" : 1992,
+            "type" : "VEC3"
+        },
+        {
+            "bufferView" : 2,
+            "componentType" : 5126,
+            "count" : 1992,
+            "type" : "VEC2"
+        },
+        {
+            "bufferView" : 3,
+            "componentType" : 5126,
+            "count" : 1992,
+            "type" : "VEC2"
+        },
+        {
+            "bufferView" : 4,
+            "componentType" : 5126,
+            "count" : 1992,
+            "type" : "VEC4"
+        },
+        {
+            "bufferView" : 5,
+            "componentType" : 5123,
+            "count" : 9102,
+            "type" : "SCALAR"
+        }
+    ],
+    "bufferViews" : [
+        {
+            "buffer" : 0,
+            "byteLength" : 23904,
+            "byteOffset" : 0
+        },
+        {
+            "buffer" : 0,
+            "byteLength" : 23904,
+            "byteOffset" : 23904
+        },
+        {
+            "buffer" : 0,
+            "byteLength" : 15936,
+            "byteOffset" : 47808
+        },
+        {
+            "buffer" : 0,
+            "byteLength" : 15936,
+            "byteOffset" : 63744
+        },
+        {
+            "buffer" : 0,
+            "byteLength" : 31872,
+            "byteOffset" : 79680
+        },
+        {
+            "buffer" : 0,
+            "byteLength" : 18204,
+            "byteOffset" : 111552
+        }
+    ],
+    "buffers" : [
+        {
+            "byteLength" : 129756,
+            "uri" : "creepy_bloddy_mask.bin"
+        }
+    ]
+}

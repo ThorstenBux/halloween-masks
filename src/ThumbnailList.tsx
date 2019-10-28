@@ -42,41 +42,43 @@ export class ThumbnailList extends React.Component<ThumbnailProps, ThumbnailStat
 interface ThumbProps {
   index: number
   selected: boolean
-  jpg: Promise<string>
+  jpg: string
   onSelected: Function
-  info:  Promise<{
+  info: {
     title: string;
     scale: number;
     position: number[];
-  }>
+  }
 }
 
 interface ThumbState {
-  loading: boolean
+  loading: boolean,
+  selected: boolean
 }
 
 class Thumbnail extends React.Component<ThumbProps, ThumbState> {
   constructor(props: ThumbProps) {
     super(props)
-    this.state = {loading: false}
+    this.state = {loading: false, selected: props.selected}
   }
 
   render() {
     return (
       <Paper
-      className={`paper-div ${this.props.selected ? 'selected' : ''}`}
-      {...this.props.info.then(info => `key=${info.title}`)}
+      className={`paper-div ${this.state.selected ? 'selected' : ''}`}
+      // {...this.props.info.then(info => `key=${info.title}`)}
       key='title'
-      // onClick={() => this.props.onSelected(index)}
       onClick={() => { 
-        this.setState({loading: true})
+        this.setState({loading: true, selected: true})
         this.props.onSelected(this.props.index).then(() => this.setState({loading: false}))
       } }
     >
-      <div className={this.state.loading ? '': 'hide'}> 
+      <div className={this.state.loading && (this.props.index !== 0) ? '': 'hide'}> 
         <CircularProgress/>
+
       </div>
-      <img {...this.props.info.then(info => `src=${this.props.jpg}`)} alt="mask" />
+      <img src={this.props.jpg} alt="mask" />
+
     </Paper>
     )
   }

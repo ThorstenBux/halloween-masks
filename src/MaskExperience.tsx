@@ -1,7 +1,9 @@
 import React from 'react';
 import { ThumbnailList } from './ThumbnailList';
 import backImg from './imgs/back.png'
-import masks, { Mask }from './masks';
+import camera from './imgs/camera.png'
+import masks, { Mask } from './masks';
+import masks_scary from './masks/scary';
 import * as three from 'three'
 import { RGBELoader } from 'three/examples/jsm/loaders/RGBELoader'
 import { GLTFLoader, GLTF } from 'three/examples/jsm/loaders/GLTFLoader'
@@ -9,14 +11,19 @@ import { EquirectangularToCubeGenerator } from 'three/examples/jsm/loaders/Equir
 import { PMREMGenerator } from 'three/examples/jsm/pmrem/PMREMGenerator'
 import { PMREMCubeUVPacker } from 'three/examples/jsm/pmrem/PMREMCubeUVPacker'
 import { Object3D } from 'three';
+import { setTimeout } from 'timers';
+import shareImg from './imgs/share.png'
+
 
 interface MaskExperienceProps {
-  onBack: Function
+  onBack: Function,
+  path: string
 }
 
 interface MaskExperienceState {
   loadingProgress: number
   selectedIndex: number
+  selfi: boolean
 }
 
 export class MaskExperience extends React.Component<MaskExperienceProps, MaskExperienceState> {
@@ -31,12 +38,17 @@ export class MaskExperience extends React.Component<MaskExperienceProps, MaskExp
   cameraFOV = 74;
   threeStuffs: any;
   ready: boolean | undefined;
+  imgData: any;
+  masks: Mask[];
 
   constructor(props: MaskExperienceProps) {
     super(props);
-    this.state = {selectedIndex: 0, loadingProgress: 0}
+    this.state = {selectedIndex: 0, loadingProgress: 0, selfi: false}
     this.cachedModels = []
-
+    this.masks = masks
+    if(this.props.path === '/masks/scary') {
+      this.masks = masks_scary
+    }
   }
 
   makeOcclusionObject(child: three.Mesh, multiply = 1) {
@@ -55,12 +67,10 @@ export class MaskExperience extends React.Component<MaskExperienceProps, MaskExp
   }
 
   async prepareModel(index: number) {
-    const gltfObject = this.cachedModels[this.state.selectedIndex]
+    const gltfObject = this.cachedModels[index]
       gltfObject.scene.traverse((child) => {
         if (child instanceof three.Mesh) {
           if (child.name.includes('head')) {
-            // this.shadowAndOcclusion(child)
-          } else if (child.name === 'transparentOccluder') {
             // Drag mask things: Exclude this mesh from responding to click&drag events
             child.userData.occlusion = true  // This is to disable to click and drag on this object; used in addDragEventListener.js
             if (child.parent) {
@@ -78,7 +88,7 @@ export class MaskExperience extends React.Component<MaskExperienceProps, MaskExp
         }
       })
       gltfObject.scene.frustumCulled = false
-      const info = await masks[index].info
+      const info = await this.masks[index].info
       gltfObject.scene.scale.multiplyScalar(info.scale)
       gltfObject.scene.position.set(info.position[0], info.position[1], info.position[2])
       if (this.maxFaces > 1) {
@@ -198,6 +208,11 @@ export class MaskExperience extends React.Component<MaskExperienceProps, MaskExp
       callbackTrack: (detectState: any) => {
         if (this.ready) {
           (window as any).THREE.JeelizHelper.render(detectState, this.threeCamera)
+          if(this.state.selfi) {
+            this.imgData = this.threeStuffs.renderer.domElement.toDataURL();
+            this.setState({selfi: false})
+            console.log(this.imgData)
+          }
         }
       }
     })
@@ -230,21 +245,23 @@ export class MaskExperience extends React.Component<MaskExperienceProps, MaskExp
 
   async onSelectObject(newIndex = 0) {
     console.log('object selected', newIndex)
-    console.log('mask', masks[newIndex])
-    this.setState({selectedIndex: newIndex})
-    await this.downloadObjects(newIndex)
-    await this.prepareModel(newIndex)
+    console.log('mask', this.masks[newIndex])
+    if (!this.cachedModels[newIndex]) {
+      this.cachedModels[newIndex] = await this.downloadObject(this.masks[newIndex])
+      await this.prepareModel(newIndex)
+    }
     const gltfObject = this.cachedModels[newIndex]
-    // if (this.state.selectedIndex >= 0) {
-    //   (window as any).addDragEventListener(undefined, this.canvasId, true)
-    //   if (this.threeStuffs.faceObject) {
-    //     this.threeStuffs.faceObject.remove(this.cachedModels[this.state.selectedIndex].scene)
-    //   } else {
-    //     this.threeStuffs.faceObjects.forEach((faceObject: Object3D, index: number) => {
-    //       faceObject.remove(this.cachedModels[this.state.selectedIndex].scenes[index])
-    //     })
-    //   }
-    // }
+    if (this.state.selectedIndex >= 0) {
+      // (window as any).addDragEventListener(undefined, this.canvasId, true)
+      if (this.threeStuffs.faceObject) {
+        this.threeStuffs.faceObject.remove(this.cachedModels[this.state.selectedIndex].scene)
+      } else {
+        this.threeStuffs.faceObjects.forEach((faceObject: Object3D, index: number) => {
+          faceObject.remove(this.cachedModels[this.state.selectedIndex].scenes[index])
+        })
+      }
+    }
+    this.setState({selectedIndex: newIndex})
 
     // Dispatch the model
     if (this.threeStuffs.faceObject) {
@@ -295,16 +312,17 @@ export class MaskExperience extends React.Component<MaskExperienceProps, MaskExp
     })
   }
 
-  async downloadObjects(index: number) {
-    // load 3D objects
-    if (!this.cachedModels[index]) {
-      this.cachedModels[index] = await this.downloadObject(masks[index])
+  share() {
+    if ((navigator as any).share) {
+      (navigator as any).share({
+        title: 'Spooky Haloween',
+        text: 'Boo from @Tripod-digital!',
+        url: 'https://halloween.tripod-digital.co.nz',
+      }).then(() => console.log('Successful share'))
+        .catch((error: Error) => console.log('Error sharing', error));
+    } else {
+      console.log('Share not supported')
     }
-    // if (!this.isActive) {
-    //   return
-    // }
-
-    // this.startJeeliz()
   }
 
   render() {
@@ -319,6 +337,14 @@ export class MaskExperience extends React.Component<MaskExperienceProps, MaskExp
             <img src={backImg} alt="a" />
           </div>
         </div>
+        <div className="right-buttons-div">
+          <div className="button-div" onClick={() => this.setState({selfi: true})}>
+            <img src={camera} alt="selfi"/>
+          </div>
+          <div className="button-div" onClick={() => this.share()}>
+            <img src={shareImg} alt="a" />
+          </div>
+        </div>
         {/* Loading screen */}
         <div
           className={`loading-div ${this.state.loadingProgress >= 100 ? 'hide' : ''}`}
@@ -330,8 +356,23 @@ export class MaskExperience extends React.Component<MaskExperienceProps, MaskExp
         </div>
         {/* Render carusell */}
         <div className="footer-div">
-          <ThumbnailList selected={selectedIndex} onSelected={this.onSelectObject.bind(this)} masks={masks}/>
+          <ThumbnailList selected={selectedIndex} onSelected={this.onSelectObject.bind(this)} masks={this.masks}/>
         </div>
+        {/* Screenshot */}
+        <div className={`screenshot-wrapper-div ${!this.imgData ? 'hide': ''}`} onClick={() => {this.imgData = undefined; this.setState({selfi: false})}}>
+          <div className="screenshot-div">
+            <div className="instruction-div">
+              Touch and hold to save
+            </div>
+            <div className="image-div">
+              <img
+                // ref={(el) => { this.imageEl = el }}
+                src={this.imgData}
+                alt="a"
+              />
+            </div>
+          </div>
+        </div> 
       </div>
     )
   }

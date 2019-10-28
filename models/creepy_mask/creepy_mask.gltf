@@ -1,0 +1,162 @@
+{
+    "asset" : {
+        "generator" : "Khronos glTF Blender I/O v0.9.36",
+        "version" : "2.0"
+    },
+    "scene" : 0,
+    "scenes" : [
+        {
+            "name" : "Scene",
+            "nodes" : [
+                3
+            ]
+        }
+    ],
+    "nodes" : [
+        {
+            "mesh" : 0,
+            "name" : "creepy_mask",
+            "translation" : [
+                0,
+                0,
+                -1.385341763496399
+            ]
+        },
+        {
+            "children" : [
+                0
+            ],
+            "name" : "Mask.OBJ.cleaner"
+        },
+        {
+            "children" : [
+                1
+            ],
+            "name" : "RootNode (model correction matrix).008"
+        },
+        {
+            "children" : [
+                2
+            ],
+            "name" : "RootNode (gltf orientation matrix).005",
+            "scale" : [
+                140,
+                140,
+                140
+            ],
+            "translation" : [
+                0,
+                -34.99101257324219,
+                0
+            ]
+        }
+    ],
+    "materials" : [
+        {
+            "doubleSided" : true,
+            "emissiveFactor" : [
+                0,
+                0,
+                0
+            ],
+            "name" : "default",
+            "occlusionTexture" : {
+                "index" : 0,
+                "texCoord" : 0
+            },
+            "pbrMetallicRoughness" : {}
+        }
+    ],
+    "meshes" : [
+        {
+            "name" : "Mesh_0.001",
+            "primitives" : [
+                {
+                    "attributes" : {
+                        "POSITION" : 0,
+                        "NORMAL" : 1,
+                        "TEXCOORD_0" : 2
+                    },
+                    "indices" : 3,
+                    "material" : 0
+                }
+            ]
+        }
+    ],
+    "textures" : [
+        {
+            "source" : 0
+        }
+    ],
+    "images" : [
+        {
+            "mimeType" : "image/png",
+            "name" : "default_occlusion",
+            "uri" : "default_occlusion.png"
+        }
+    ],
+    "accessors" : [
+        {
+            "bufferView" : 0,
+            "componentType" : 5126,
+            "count" : 868,
+            "max" : [
+                0.6344000101089478,
+                1.3495999574661255,
+                1.736299991607666
+            ],
+            "min" : [
+                -0.6381000280380249,
+                -0.39590001106262207,
+                0.8752999901771545
+            ],
+            "type" : "VEC3"
+        },
+        {
+            "bufferView" : 1,
+            "componentType" : 5126,
+            "count" : 868,
+            "type" : "VEC3"
+        },
+        {
+            "bufferView" : 2,
+            "componentType" : 5126,
+            "count" : 868,
+            "type" : "VEC2"
+        },
+        {
+            "bufferView" : 3,
+            "componentType" : 5123,
+            "count" : 4968,
+            "type" : "SCALAR"
+        }
+    ],
+    "bufferViews" : [
+        {
+            "buffer" : 0,
+            "byteLength" : 10416,
+            "byteOffset" : 0
+        },
+        {
+            "buffer" : 0,
+            "byteLength" : 10416,
+            "byteOffset" : 10416
+        },
+        {
+            "buffer" : 0,
+            "byteLength" : 6944,
+            "byteOffset" : 20832
+        },
+        {
+            "buffer" : 0,
+            "byteLength" : 9936,
+            "byteOffset" : 27776
+        }
+    ],
+    "buffers" : [
+        {
+            "byteLength" : 37712,
+            "uri" : "creepy_mask.bin"
+        }
+    ]
+}

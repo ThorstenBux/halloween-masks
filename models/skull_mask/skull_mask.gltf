@@ -1,0 +1,339 @@
+{
+    "asset" : {
+        "generator" : "Khronos glTF Blender I/O v0.9.36",
+        "version" : "2.0"
+    },
+    "scene" : 0,
+    "scenes" : [
+        {
+            "name" : "Scene",
+            "nodes" : [
+                6
+            ]
+        }
+    ],
+    "nodes" : [
+        {
+            "mesh" : 0,
+            "name" : "Mask_ Skull_0"
+        },
+        {
+            "mesh" : 1,
+            "name" : "Mask_Mask_0"
+        },
+        {
+            "children" : [
+                0,
+                1
+            ],
+            "name" : "Mask.002",
+            "rotation" : [
+                -0.7071068286895752,
+                0,
+                0,
+                0.7071067094802856
+            ],
+            "scale" : [
+                50.79364013671875,
+                54.329185485839844,
+                48.59877395629883
+            ]
+        },
+        {
+            "children" : [
+                2
+            ],
+            "name" : "RootNode.007"
+        },
+        {
+            "children" : [
+                3
+            ],
+            "name" : "skull_mask.fbx",
+            "rotation" : [
+                0.7071068286895752,
+                0,
+                0,
+                0.7071068286895752
+            ]
+        },
+        {
+            "children" : [
+                4
+            ],
+            "name" : "RootNode (model correction matrix).010"
+        },
+        {
+            "children" : [
+                5
+            ],
+            "name" : "RootNode (gltf orientation matrix).007",
+            "scale" : [
+                7,
+                7,
+                7
+            ],
+            "translation" : [
+                0,
+                -139.70843505859375,
+                -29.028615951538086
+            ]
+        }
+    ],
+    "materials" : [
+        {
+            "doubleSided" : true,
+            "emissiveFactor" : [
+                0,
+                0,
+                0
+            ],
+            "name" : "Skull",
+            "normalTexture" : {
+                "index" : 0,
+                "texCoord" : 0
+            },
+            "occlusionTexture" : {
+                "index" : 1,
+                "texCoord" : 0
+            },
+            "pbrMetallicRoughness" : {
+                "baseColorTexture" : {
+                    "index" : 2,
+                    "texCoord" : 0
+                },
+                "metallicRoughnessTexture" : {
+                    "index" : 1,
+                    "texCoord" : 0
+                }
+            }
+        },
+        {
+            "doubleSided" : true,
+            "emissiveFactor" : [
+                0,
+                0,
+                0
+            ],
+            "name" : "Mask",
+            "normalTexture" : {
+                "index" : 3,
+                "texCoord" : 0
+            },
+            "occlusionTexture" : {
+                "index" : 4,
+                "texCoord" : 0
+            },
+            "pbrMetallicRoughness" : {
+                "baseColorTexture" : {
+                    "index" : 5,
+                    "texCoord" : 0
+                },
+                "metallicRoughnessTexture" : {
+                    "index" : 4,
+                    "texCoord" : 0
+                }
+            }
+        }
+    ],
+    "meshes" : [
+        {
+            "name" : "Mask_ Skull_0",
+            "primitives" : [
+                {
+                    "attributes" : {
+                        "POSITION" : 0,
+                        "NORMAL" : 1,
+                        "TEXCOORD_0" : 2
+                    },
+                    "indices" : 3,
+                    "material" : 0
+                }
+            ]
+        },
+        {
+            "name" : "Mask_Mask_0",
+            "primitives" : [
+                {
+                    "attributes" : {
+                        "POSITION" : 4,
+                        "NORMAL" : 5,
+                        "TEXCOORD_0" : 6
+                    },
+                    "indices" : 7,
+                    "material" : 1
+                }
+            ]
+        }
+    ],
+    "textures" : [
+        {
+            "source" : 0
+        },
+        {
+            "source" : 1
+        },
+        {
+            "source" : 2
+        },
+        {
+            "source" : 3
+        },
+        {
+            "source" : 4
+        },
+        {
+            "source" : 5
+        }
+    ],
+    "images" : [
+        {
+            "mimeType" : "image/png",
+            "name" : "Skull_normal",
+            "uri" : "Skull_normal.png"
+        },
+        {
+            "mimeType" : "image/png",
+            "name" : "Skull_metallicRoughness",
+            "uri" : "Skull_metallicRoughness.png"
+        },
+        {
+            "mimeType" : "image/png",
+            "name" : "Skull_baseColor",
+            "uri" : "Skull_baseColor.png"
+        },
+        {
+            "mimeType" : "image/png",
+            "name" : "Mask_normal",
+            "uri" : "Mask_normal.png"
+        },
+        {
+            "mimeType" : "image/png",
+            "name" : "Mask_metallicRoughness",
+            "uri" : "Mask_metallicRoughness.png"
+        },
+        {
+            "mimeType" : "image/png",
+            "name" : "Mask_baseColor",
+            "uri" : "Mask_baseColor.png"
+        }
+    ],
+    "accessors" : [
+        {
+            "bufferView" : 0,
+            "componentType" : 5126,
+            "count" : 1086,
+            "max" : [
+                0.2603470981121063,
+                0.7822953462600708,
+                0.15551255643367767
+            ],
+            "min" : [
+                -0.26860156655311584,
+                0.11473309993743896,
+                -0.024952679872512817
+            ],
+            "type" : "VEC3"
+        },
+        {
+            "bufferView" : 1,
+            "componentType" : 5126,
+            "count" : 1086,
+            "type" : "VEC3"
+        },
+        {
+            "bufferView" : 2,
+            "componentType" : 5126,
+            "count" : 1086,
+            "type" : "VEC2"
+        },
+        {
+            "bufferView" : 3,
+            "componentType" : 5123,
+            "count" : 3030,
+            "type" : "SCALAR"
+        },
+        {
+            "bufferView" : 4,
+            "componentType" : 5126,
+            "count" : 761,
+            "max" : [
+                0.32943108677864075,
+                0.9264941215515137,
+                0.1479785144329071
+            ],
+            "min" : [
+                -0.32943108677864075,
+                0,
+                -0.2043079137802124
+            ],
+            "type" : "VEC3"
+        },
+        {
+            "bufferView" : 5,
+            "componentType" : 5126,
+            "count" : 761,
+            "type" : "VEC3"
+        },
+        {
+            "bufferView" : 6,
+            "componentType" : 5126,
+            "count" : 761,
+            "type" : "VEC2"
+        },
+        {
+            "bufferView" : 7,
+            "componentType" : 5123,
+            "count" : 1716,
+            "type" : "SCALAR"
+        }
+    ],
+    "bufferViews" : [
+        {
+            "buffer" : 0,
+            "byteLength" : 13032,
+            "byteOffset" : 0
+        },
+        {
+            "buffer" : 0,
+            "byteLength" : 13032,
+            "byteOffset" : 13032
+        },
+        {
+            "buffer" : 0,
+            "byteLength" : 8688,
+            "byteOffset" : 26064
+        },
+        {
+            "buffer" : 0,
+            "byteLength" : 6060,
+            "byteOffset" : 34752
+        },
+        {
+            "buffer" : 0,
+            "byteLength" : 9132,
+            "byteOffset" : 40812
+        },
+        {
+            "buffer" : 0,
+            "byteLength" : 9132,
+            "byteOffset" : 49944
+        },
+        {
+            "buffer" : 0,
+            "byteLength" : 6088,
+            "byteOffset" : 59076
+        },
+        {
+            "buffer" : 0,
+            "byteLength" : 3432,
+            "byteOffset" : 65164
+        }
+    ],
+    "buffers" : [
+        {
+            "byteLength" : 68596,
+            "uri" : "skull_mask.bin"
+        }
+    ]
+}

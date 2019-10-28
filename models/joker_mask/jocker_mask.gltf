@@ -1,0 +1,147 @@
+{
+    "asset" : {
+        "generator" : "Khronos glTF Blender I/O v0.9.36",
+        "version" : "2.0"
+    },
+    "scene" : 0,
+    "scenes" : [
+        {
+            "name" : "Scene",
+            "nodes" : [
+                4
+            ]
+        }
+    ],
+    "nodes" : [
+        {
+            "mesh" : 0,
+            "name" : "Joker_Mask_0"
+        },
+        {
+            "children" : [
+                0
+            ],
+            "name" : "Joker_Mask"
+        },
+        {
+            "children" : [
+                1
+            ],
+            "name" : "Root"
+        },
+        {
+            "children" : [
+                2
+            ],
+            "name" : "RootNode (model correction matrix).009"
+        },
+        {
+            "children" : [
+                3
+            ],
+            "name" : "RootNode (gltf orientation matrix).006",
+            "scale" : [
+                40,
+                40,
+                40
+            ],
+            "translation" : [
+                0,
+                0,
+                -50.43128204345703
+            ]
+        }
+    ],
+    "materials" : [
+        {
+            "doubleSided" : true,
+            "emissiveFactor" : [
+                0,
+                0,
+                0
+            ],
+            "name" : "Joker_Mask_Material",
+            "pbrMetallicRoughness" : {}
+        }
+    ],
+    "meshes" : [
+        {
+            "name" : "Joker_Mask_0",
+            "primitives" : [
+                {
+                    "attributes" : {
+                        "POSITION" : 0,
+                        "NORMAL" : 1,
+                        "TEXCOORD_0" : 2
+                    },
+                    "indices" : 3,
+                    "material" : 0
+                }
+            ]
+        }
+    ],
+    "accessors" : [
+        {
+            "bufferView" : 0,
+            "componentType" : 5126,
+            "count" : 8598,
+            "max" : [
+                3.5985100269317627,
+                4.337969779968262,
+                2.929219961166382
+            ],
+            "min" : [
+                -3.5985100269317627,
+                -3.7688300609588623,
+                -3.972790002822876
+            ],
+            "type" : "VEC3"
+        },
+        {
+            "bufferView" : 1,
+            "componentType" : 5126,
+            "count" : 8598,
+            "type" : "VEC3"
+        },
+        {
+            "bufferView" : 2,
+            "componentType" : 5126,
+            "count" : 8598,
+            "type" : "VEC2"
+        },
+        {
+            "bufferView" : 3,
+            "componentType" : 5123,
+            "count" : 50472,
+            "type" : "SCALAR"
+        }
+    ],
+    "bufferViews" : [
+        {
+            "buffer" : 0,
+            "byteLength" : 103176,
+            "byteOffset" : 0
+        },
+        {
+            "buffer" : 0,
+            "byteLength" : 103176,
+            "byteOffset" : 103176
+        },
+        {
+            "buffer" : 0,
+            "byteLength" : 68784,
+            "byteOffset" : 206352
+        },
+        {
+            "buffer" : 0,
+            "byteLength" : 100944,
+            "byteOffset" : 275136
+        }
+    ],
+    "buffers" : [
+        {
+            "byteLength" : 376080,
+            "uri" : "jocker_mask.bin"
+        }
+    ]
+}

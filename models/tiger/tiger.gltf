@@ -1,0 +1,212 @@
+{
+    "asset" : {
+        "generator" : "Khronos glTF Blender I/O v0.9.36",
+        "version" : "2.0"
+    },
+    "scene" : 0,
+    "scenes" : [
+        {
+            "name" : "Scene",
+            "nodes" : [
+                5
+            ]
+        }
+    ],
+    "nodes" : [
+        {
+            "mesh" : 0,
+            "name" : "Tiger_Mask_Tiger_Mask_0"
+        },
+        {
+            "children" : [
+                0
+            ],
+            "name" : "Tiger_Mask",
+            "rotation" : [
+                -0.7071068286895752,
+                0,
+                0,
+                0.7071068286895752
+            ]
+        },
+        {
+            "children" : [
+                1
+            ],
+            "name" : "RootNode.006"
+        },
+        {
+            "children" : [
+                2
+            ],
+            "name" : "Mask_tiger.FBX",
+            "rotation" : [
+                1,
+                0,
+                0,
+                0
+            ]
+        },
+        {
+            "children" : [
+                3
+            ],
+            "name" : "RootNode (model correction matrix).007",
+            "rotation" : [
+                1,
+                0,
+                0,
+                0
+            ],
+            "translation" : [
+                0,
+                -41.310726165771484,
+                12.430459022521973
+            ]
+        },
+        {
+            "children" : [
+                4
+            ],
+            "name" : "RootNode (gltf orientation matrix).004",
+            "scale" : [
+                7,
+                7,
+                7
+            ],
+            "translation" : [
+                0,
+                176.07518005371094,
+                -91.41090393066406
+            ]
+        }
+    ],
+    "materials" : [
+        {
+            "doubleSided" : true,
+            "name" : "Tiger_Mask",
+            "normalTexture" : {
+                "index" : 0,
+                "texCoord" : 0
+            },
+            "pbrMetallicRoughness" : {
+                "baseColorTexture" : {
+                    "index" : 1,
+                    "texCoord" : 0
+                },
+                "metallicRoughnessTexture" : {
+                    "index" : 2,
+                    "texCoord" : 0
+                }
+            }
+        }
+    ],
+    "meshes" : [
+        {
+            "name" : "Tiger_Mask_Tiger_Mask_0",
+            "primitives" : [
+                {
+                    "attributes" : {
+                        "POSITION" : 0,
+                        "NORMAL" : 1,
+                        "TEXCOORD_0" : 2
+                    },
+                    "indices" : 3,
+                    "material" : 0
+                }
+            ]
+        }
+    ],
+    "textures" : [
+        {
+            "source" : 0
+        },
+        {
+            "source" : 1
+        },
+        {
+            "source" : 2
+        }
+    ],
+    "images" : [
+        {
+            "mimeType" : "image/png",
+            "name" : "Tiger_Mask_normal",
+            "uri" : "Tiger_Mask_normal.png"
+        },
+        {
+            "mimeType" : "image/png",
+            "name" : "Tiger_Mask_baseColor",
+            "uri" : "Tiger_Mask_baseColor.png"
+        },
+        {
+            "mimeType" : "image/png",
+            "name" : "Tiger_Mask_metallicRoughness",
+            "uri" : "Tiger_Mask_metallicRoughness.png"
+        }
+    ],
+    "accessors" : [
+        {
+            "bufferView" : 0,
+            "componentType" : 5126,
+            "count" : 942,
+            "max" : [
+                22.66080093383789,
+                26.864999771118164,
+                40.295101165771484
+            ],
+            "min" : [
+                -22.66080093383789,
+                -14.43455696105957,
+                1.0155999660491943
+            ],
+            "type" : "VEC3"
+        },
+        {
+            "bufferView" : 1,
+            "componentType" : 5126,
+            "count" : 942,
+            "type" : "VEC3"
+        },
+        {
+            "bufferView" : 2,
+            "componentType" : 5126,
+            "count" : 942,
+            "type" : "VEC2"
+        },
+        {
+            "bufferView" : 3,
+            "componentType" : 5123,
+            "count" : 942,
+            "type" : "SCALAR"
+        }
+    ],
+    "bufferViews" : [
+        {
+            "buffer" : 0,
+            "byteLength" : 11304,
+            "byteOffset" : 0
+        },
+        {
+            "buffer" : 0,
+            "byteLength" : 11304,
+            "byteOffset" : 11304
+        },
+        {
+            "buffer" : 0,
+            "byteLength" : 7536,
+            "byteOffset" : 22608
+        },
+        {
+            "buffer" : 0,
+            "byteLength" : 1884,
+            "byteOffset" : 30144
+        }
+    ],
+    "buffers" : [
+        {
+            "byteLength" : 32028,
+            "uri" : "tiger.bin"
+        }
+    ]
+}

@@ -1,5 +1,12 @@
+
+.poweredBy a{
+  color: green !important;
+}
+
 .App {
   text-align: center;
+  background-image: url('./witch-bg.jpg');
+  background-size: cover;
 }
 
 .App-logo {
@@ -7,15 +14,16 @@
 }
 
 .App-header {
-  background-color: #adadad;
   min-height: 100vh;
   display: flex;
   flex-direction: column;
   align-items: center;
   /* justify-content: center; */
   font-size: calc(10px + 2vmin);
-  color: white;
-  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+  /*font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;*/
+  font-family: 'nosifer';
+  color: #bd1e1e;
+  text-shadow: 3px 3px white;
 }
 
 .App-link {
@@ -24,7 +32,7 @@
 
 
 .experience-div {
-  padding: 30px 8px;
+  /* padding: 30px 8px; */
   width: 100%;
   box-sizing: border-box;
 }
@@ -36,17 +44,18 @@
   border-radius: 5px;
   overflow: hidden;
   float: left;
-  box-shadow: 0px 0px 5px 0px rgba(0, 0, 0, 0.459);
+  /* box-shadow: 0px 0px 5px 0px rgba(0, 0, 0, 0.459); */
 }
 
 .experience-title {
   left: 10px;
   bottom: 10px;
-  font-size: 15px;
-  font-family: Arial, Helvetica, sans-serif;
+  font-size: 40px;
+  font-family: 'creepster';
   text-shadow: 2px 2px 8px rgb(0, 0, 0);
   width: 100%;
   color: white;
+  text-shadow: 2px 2px #bd1e1e;
 }
 .experience-img {
   border-radius: 25%;
@@ -77,6 +86,24 @@
 .loading-div.hide {
   visibility: hidden;
 }
+
+.hide {
+  display: none;
+  /* visibility: hidden; */
+}
+
+.left-buttons-div {
+  position: absolute;
+  left: 20px;
+  top: 20px;
+  z-index: 14; }
+
+.right-buttons-div {
+    position: absolute;
+    right: 20px;
+    top: 20px;
+    z-index: 14; 
+  }
 
 .loading-div .cancel-button {
   position: absolute;
@@ -134,3 +161,62 @@
 .MuiCircularProgress-colorPrimary {
   color: #ff9100 !important;
 }
+
+.screenshot-div {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 80%;
+  height: 80%;
+  border-radius: 5px;
+  overflow: hidden;
+  box-shadow: 0px 0px 3px 0px #ff9100;
+}
+
+.screenshot-div .image-div {
+  width: 100%;
+  height: 100%;
+}
+
+.screenshot-div .image-div.img {
+  width: 100%;
+  height: 100%;
+}
+
+.instruction-div {
+  color: white;
+  font-size: 25px;
+  text-align: center;
+  background-color:black;
+  padding-top:10px;
+  padding-bottom: 10px;
+}
+
+ .footer {
+  width: 100%;
+  position: absolute;
+  bottom: 0px;
+  z-index: 20;
+  padding-bottom: 20px;
+  color: white;
+  
+}
+
+.credits {
+  width: 50%;
+  float: left;
+  margin-top: 80px;
+}
+
+.credits a{
+  color: green !important;
+}
+
+.poweredBy {
+  /* width: 50%; */
+  float: right;
+  margin-right: 30px;
+  background-color: #242E2E;
+}
+
