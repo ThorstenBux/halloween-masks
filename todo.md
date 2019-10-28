@@ -1,5 +1,8 @@
 - share (/)
-- 5. scary mask
+- test masks
+  - funny (/)
+  - scary (/)
 - Tracking (/)
--favicon (/)
-- credits
+- favicon (/)
+- credits (/)
+- Add more scary

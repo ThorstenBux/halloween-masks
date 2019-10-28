@@ -1,8 +1,6 @@
 const names = [
   'creepy_bloddy_mask',
   'creepy_rabbit',
-  'creepy_jason',
-  'creepy_skull',
   'creepy_cat',
 ]
 

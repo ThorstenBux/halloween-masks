@@ -25,11 +25,12 @@ export class GCALoggingService {
     const userAgent = navigator.userAgent;
     event.userAgent = userAgent;
     try {
-      const response = await fetch('http://www.geoplugin.net/json.gp');
+      // const response = await fetch('https://ipapi.co/json/');
+      const response = await fetch('https://api.smartip.io/?api_key=7207c349-0b6b-47f4-a486-4ce667186c42');
       const location = await response.json();
       event.location = location
     } catch(e) {
-      event.error = e
+      event.error = e.toString()
     }
     const time = Date.now()
     event.timestamp = time

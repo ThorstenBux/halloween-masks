@@ -1,7 +1,6 @@
 const names = [
   'wicked_cat',
   'clown',
-  'iron_man',
   'spiderman',
   'tiger',
 ]
