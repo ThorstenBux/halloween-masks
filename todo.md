@@ -5,4 +5,6 @@
 - Tracking (/)
 - favicon (/)
 - credits (/)
+- Fix tiger (/)
+- Multi face (/)
 - Add more scary

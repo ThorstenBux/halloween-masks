@@ -8,28 +8,18 @@
         {
             "name" : "Scene",
             "nodes" : [
-                0,
-                6
+                5
             ]
         }
     ],
     "nodes" : [
         {
             "mesh" : 0,
-            "name" : "head.002",
-            "scale" : [
-                181.64700317382812,
-                160,
-                180
-            ]
-        },
-        {
-            "mesh" : 1,
             "name" : "Tiger_Mask_Tiger_Mask_0"
         },
         {
             "children" : [
-                1
+                0
             ],
             "name" : "Tiger_Mask",
             "rotation" : [
@@ -41,13 +31,13 @@
         },
         {
             "children" : [
-                2
+                1
             ],
             "name" : "RootNode.006"
         },
         {
             "children" : [
-                3
+                2
             ],
             "name" : "Mask_tiger.FBX",
             "rotation" : [
@@ -59,7 +49,7 @@
         },
         {
             "children" : [
-                4
+                3
             ],
             "name" : "RootNode (model correction matrix).007",
             "rotation" : [
@@ -76,7 +66,7 @@
         },
         {
             "children" : [
-                5
+                4
             ],
             "name" : "RootNode (gltf orientation matrix).004",
             "scale" : [
@@ -92,11 +82,6 @@
         }
     ],
     "materials" : [
-        {
-            "doubleSided" : true,
-            "name" : "defaultMat.001",
-            "pbrMetallicRoughness" : {}
-        },
         {
             "doubleSided" : true,
             "name" : "Tiger_Mask",
@@ -118,7 +103,7 @@
     ],
     "meshes" : [
         {
-            "name" : "Group1",
+            "name" : "Tiger_Mask_Tiger_Mask_0",
             "primitives" : [
                 {
                     "attributes" : {
@@ -128,20 +113,6 @@
                     },
                     "indices" : 3,
                     "material" : 0
-                }
-            ]
-        },
-        {
-            "name" : "Tiger_Mask_Tiger_Mask_0",
-            "primitives" : [
-                {
-                    "attributes" : {
-                        "POSITION" : 4,
-                        "NORMAL" : 5,
-                        "TEXCOORD_0" : 6
-                    },
-                    "indices" : 7,
-                    "material" : 1
                 }
             ]
         }
@@ -178,40 +149,6 @@
         {
             "bufferView" : 0,
             "componentType" : 5126,
-            "count" : 2868,
-            "max" : [
-                0.6231987476348877,
-                1.0436625480651855,
-                0.19949853420257568
-            ],
-            "min" : [
-                -0.5944988131523132,
-                -1.084633231163025,
-                -1.3837981224060059
-            ],
-            "type" : "VEC3"
-        },
-        {
-            "bufferView" : 1,
-            "componentType" : 5126,
-            "count" : 2868,
-            "type" : "VEC3"
-        },
-        {
-            "bufferView" : 2,
-            "componentType" : 5126,
-            "count" : 2868,
-            "type" : "VEC2"
-        },
-        {
-            "bufferView" : 3,
-            "componentType" : 5123,
-            "count" : 2868,
-            "type" : "SCALAR"
-        },
-        {
-            "bufferView" : 4,
-            "componentType" : 5126,
             "count" : 942,
             "max" : [
                 22.66080093383789,
@@ -226,19 +163,19 @@
             "type" : "VEC3"
         },
         {
-            "bufferView" : 5,
+            "bufferView" : 1,
             "componentType" : 5126,
             "count" : 942,
             "type" : "VEC3"
         },
         {
-            "bufferView" : 6,
+            "bufferView" : 2,
             "componentType" : 5126,
             "count" : 942,
             "type" : "VEC2"
         },
         {
-            "bufferView" : 7,
+            "bufferView" : 3,
             "componentType" : 5123,
             "count" : 942,
             "type" : "SCALAR"
@@ -247,48 +184,28 @@
     "bufferViews" : [
         {
             "buffer" : 0,
-            "byteLength" : 34416,
+            "byteLength" : 11304,
             "byteOffset" : 0
         },
         {
             "buffer" : 0,
-            "byteLength" : 34416,
-            "byteOffset" : 34416
-        },
-        {
-            "buffer" : 0,
-            "byteLength" : 22944,
-            "byteOffset" : 68832
-        },
-        {
-            "buffer" : 0,
-            "byteLength" : 5736,
-            "byteOffset" : 91776
-        },
-        {
-            "buffer" : 0,
             "byteLength" : 11304,
-            "byteOffset" : 97512
-        },
-        {
-            "buffer" : 0,
-            "byteLength" : 11304,
-            "byteOffset" : 108816
+            "byteOffset" : 11304
         },
         {
             "buffer" : 0,
             "byteLength" : 7536,
-            "byteOffset" : 120120
+            "byteOffset" : 22608
         },
         {
             "buffer" : 0,
             "byteLength" : 1884,
-            "byteOffset" : 127656
+            "byteOffset" : 30144
         }
     ],
     "buffers" : [
         {
-            "byteLength" : 129540,
+            "byteLength" : 32028,
             "uri" : "tiger.bin"
         }
     ]

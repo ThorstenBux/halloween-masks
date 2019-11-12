@@ -11,7 +11,6 @@ import { EquirectangularToCubeGenerator } from 'three/examples/jsm/loaders/Equir
 import { PMREMGenerator } from 'three/examples/jsm/pmrem/PMREMGenerator'
 import { PMREMCubeUVPacker } from 'three/examples/jsm/pmrem/PMREMCubeUVPacker'
 import { Object3D } from 'three';
-import { setTimeout } from 'timers';
 import shareImg from './imgs/share.png'
 
 
@@ -31,7 +30,7 @@ export class MaskExperience extends React.Component<MaskExperienceProps, MaskExp
   canvasId: string = 'faceCanvas'
   CANVAS: any
   threeCamera: three.PerspectiveCamera = new three.PerspectiveCamera()
-  maxFaces = 1
+  maxFaces = 3
   cachedTexture!: three.Texture;
   cachedModels: Array<GLTF>;
   envMap: any;
@@ -194,7 +193,6 @@ export class MaskExperience extends React.Component<MaskExperienceProps, MaskExp
           console.error(errCode)
           return
         }
-        this.setState({ loadingProgress: 100 });
         (window as any).JEEFACEFILTERAPI.set_stabilizationSettings({
           translationFactorRange : [0.001, 0.003], // default [0.0015, 0.005]
           rotationFactorRange    : [0.002, 0.01], // default: [0.003, 0.02]
@@ -207,6 +205,7 @@ export class MaskExperience extends React.Component<MaskExperienceProps, MaskExp
       },
       callbackTrack: (detectState: any) => {
         if (this.ready) {
+          this.setState({ loadingProgress: 100 });
           (window as any).THREE.JeelizHelper.render(detectState, this.threeCamera)
           if(this.state.selfi) {
             this.imgData = this.threeStuffs.renderer.domElement.toDataURL();
@@ -237,9 +236,6 @@ export class MaskExperience extends React.Component<MaskExperienceProps, MaskExp
   }
 
   componentDidMount() {
-    setTimeout(() => {
-      this.setState({loadingProgress: 100})
-    }, 1000)
     this.startJeeliz()
   }
 
